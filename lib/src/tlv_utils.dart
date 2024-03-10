@@ -16,7 +16,8 @@ class TlvUtils {
       offset += length;
 
       /// Read the value field
-      var valueLength = _getValueLength(data.sublist(offset - length, offset), 0);
+      var valueLength =
+          _getValueLength(data.sublist(offset - length, offset), 0);
       var value = data.sublist(offset, offset + valueLength);
       offset += valueLength;
 
@@ -70,7 +71,7 @@ class TlvUtils {
     }
     var lengthBytes = Uint8List(3);
     lengthBytes[0] = 0x82;
-    lengthBytes.setRange(1, 3, Uint8List.fromList([length]));
+    lengthBytes.setRange(1, 2, Uint8List.fromList([length]));
     return lengthBytes;
   }
 
