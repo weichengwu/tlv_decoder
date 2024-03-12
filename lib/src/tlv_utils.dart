@@ -35,6 +35,7 @@ class TlvUtils {
   /// Length value
   static int _getValueLength(Uint8List aBuf, int aOffset) {
     int length = aBuf[aOffset] & 255;
+    return length;
     if ((length & 128) == 128) {
       int numberOfBytes = length & 127;
       if (numberOfBytes > 3) {
@@ -66,7 +67,7 @@ class TlvUtils {
 
   /// Convert length int to bytes
   static Uint8List _encodeLength(int length) {
-    if (length < 128) {
+    if (length < 255) {
       return Uint8List.fromList([length]);
     }
     var lengthBytes = Uint8List(3);
